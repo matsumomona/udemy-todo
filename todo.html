@@ -6,6 +6,48 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
     <style>
+        .main{
+            /*margin: 0 auto;*/
+            /*smax-width: 600px; /* コンテンツの幅を制限 */
+            padding: 20px; /* 内側の余白を追加 */
+            border: 1px solid #ccc; /* 境界線を追加 */
+            background-color: #B3E0E2; 
+            text-align: center;
+        }
+        h1{
+            color: #e5636a
+        }
+        hr{
+            border: none;
+            height: 0.5px;
+            background-color: black; /* 線の色 */
+            width: 60%; /* 幅を調整 */
+            margin: 20px auto; /* 中央揃え */
+        }
+        .button{
+            background-color: #e5636a; /* 背景色 */
+            border: none; /* 境界線をなしに */
+            color: white; /* テキストの色 */
+            padding: 8px 15px; /* パディング */
+            text-align: center; /* テキストの中央揃え */
+            text-decoration: none; /* テキストの装飾をなしに */
+            display: inline-block; /* インラインブロック表示 */
+            margin: 4px 2px; /* 外側の余白 */
+            cursor: pointer; /* カーソルをポインターに */
+            border-radius: 4px; /* 角を丸くする */
+        }
+        .deleate{
+            background-color: #58aaae;
+        }
+        button:hover {
+            background-color: #de4950; /* ホバー時の背景色 */
+        }
+        .deleate:hover {
+            background-color: #18a1a8; /* ホバー時の背景色 */
+        }
+        nobr{
+            color: #18a1a8;
+        }
         [v-cloak]{
             display: none;
         }
@@ -18,15 +60,18 @@
     </style>
 </head>
 <body>
-    <div id="app"><!--仮想DOM-->
+    <div id="app" class="main"><!--仮想DOM-->
+        <h1>ToDoリスト</h1>
+        <hr>
         <input type="text" v-model="newItem">
-        <button @click.prevent="addItem">追加</button><br>
-        検索<input v-model="query">
+        <button @click.prevent="addItem" class="button add">追加</button><br>
+        <nobr>検索：</nobr>
+        <input v-model="query">
         <ul>
             <li v-for="(todo, index) in filteredList">
                 <input type="checkbox" v-model="todo.isDone">
                 <span :class="{done: todo.isDone}">{{todo.item}}</span>
-                <button @click="deleteItem(index)">削除</button>
+                <button @click="deleteItem(index)" class="button deleate">削除</button>
             </li>
         </ul>
     </div><!--仮想DOM-->
